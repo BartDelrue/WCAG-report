@@ -13,7 +13,7 @@
             </thead>
             <tbody>
             <tr v-for="{id: principle, num, handle} in principles" :key="principle">
-                <th>{{num}}. {{handle}}</th>
+              <th><a :href="'#' + handle.replaceAll(' ', '-')">{{num}}. {{handle}}</a></th>
                 <td>
                     <span class="tag is-light"
                           :class="getAlertClass(getFlatResultForLevelAndPrinciple(principle, 'A', id))">

@@ -2,7 +2,7 @@
     <div class="container">
         <h2 class="title is-2">Detail van de audit</h2>
         <div v-for="principle in principles" :key="principle.id">
-            <h3 class="title is-3" lang="en" v-text="principle.num + '. ' + principle.handle"/>
+            <h3 class="title is-3" :id="principle.handle.replaceAll(' ', '-')" lang="en" v-text="principle.num + '. ' + principle.handle"/>
             <div class="notification" v-text="principle.text"></div>
             <div class="mb-3" v-for="guideline in principle.guidelines" :key="guideline.id">
 

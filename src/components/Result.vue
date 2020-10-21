@@ -22,11 +22,11 @@
                 </div>
             </div>
         </div>
-        <div class="notification content" :class="'is-' + getClassForResult(assertion)">
-            <h6 class="title is-6">Resultaat voor de volledige selectie: <strong>{{ assertion.result.outcome |
-                rdfToLabel }}</strong></h6>
-            <div v-if="assertion.result.description" v-html="$options.filters.markdown(assertion.result.description)"/>
-        </div>
+        <h6 class="title is-6 notification"
+            :class="'is-' + getClassForResult(assertion)">Resultaat voor de volledige selectie:
+          <strong>{{ assertion.result.outcome | rdfToLabel }}</strong>
+        </h6>
+        <div class="box content" v-if="assertion.result.description" v-html="$options.filters.markdown(assertion.result.description)"/>
         <div v-if="assertion.hasPart.length" >
             <div class="box thin" v-for="part in assertion.hasPart"
                  :key="part.testcase + part.subject[0]"

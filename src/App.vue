@@ -51,8 +51,7 @@
 </template>
 
 <script>
-  import report from '@/assets/report.json';
-  import wcagNl from '@/assets/wcag2-nl.json';
+  import report from '@/assets/visit-gent-evaluation-report.json';
   import wcagEn from '@/assets/wcag2-en.json';
   import Summary from './components/Summary';
   import Breakdown from './components/Breakdown';
@@ -64,7 +63,6 @@
     data () {
       return {
         report: report['@graph'],
-        wcagNl: wcagNl,
         wcagEn: wcagEn
       };
     },
@@ -74,7 +72,7 @@
       },
       evaluationDate () {
         const date = new Date(this.evaluation.date);
-        return `${date.getUTCDate()}/${date.getUTCMonth()}/${date.getUTCFullYear()}`;
+        return `${date.getUTCDate()}/${date.getUTCMonth() + 1}/${date.getUTCFullYear()}`;
       },
       evaluationScope () {
         return this.evaluation.evaluationScope;
@@ -100,6 +98,9 @@
       principles () {
         return this.wcagEn.principles;
       }
+    },
+    mounted() {
+      document.title = this.evaluation.title
     },
     methods: {},
     components: {Summary, Breakdown, Pages, Detail}
@@ -159,7 +160,6 @@
         }
     }
 
-
     .main-breakdown {
         border: .25rem solid $primary;
         padding: 1rem;
@@ -175,7 +175,6 @@
 
     .box-success {
         border-color: $success;
-
     }
 
     .box-danger {

@@ -12,6 +12,30 @@
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <div id="app"></div>
+    <script>
+      (function() {
+        function save() {
+          var blob = new Blob(['<html lang="nl">'+document.documentElement.innerHTML+'</html>'],{ type: "text/html;charset=utf-8" })
+          var a = document.createElement("a"), url = URL.createObjectURL(blob)
+          var current_datetime = new Date()
+          var formatted_date = current_datetime.getFullYear() + "-" + (current_datetime.getMonth() + 1) + "-" + current_datetime.getDate()
+          a.href = url;
+          a.download = formatted_date + '_' + document.title.replaceAll(' ','-') + '.html'
+          document.body.appendChild(a)
+          a.click()
+          setTimeout(function() {
+            document.body.removeChild(a)
+            window.URL.revokeObjectURL(url)
+          })
+        }
+        document.addEventListener("keydown", e => {
+          if ((window.navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)  && e.key === 's') {
+            e.preventDefault()
+            save()
+          }
+        }, false)
+      })()
+    </script>
     <!-- built files will be auto injected -->
   </body>
 </html>

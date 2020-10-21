@@ -22,11 +22,11 @@
             </tr>
             <tr>
                 <th>Verdere evaluatievereisten</th>
-                <td v-text="scope.additionalEvalRequirement"></td>
+                <td v-html="$options.filters.markdown(scope.additionalEvalRequirement)"></td>
             </tr>
             <tr>
                 <th>Basisniveau van toegankelijkheid ondersteund</th>
-                <td v-text="scope.accessibilitySupportBaseline"></td>
+                <td v-html="$options.filters.markdown(scope.accessibilitySupportBaseline)"></td>
             </tr>
             <tr>
                 <th>Technologieën waarop gesteund wordt</th>

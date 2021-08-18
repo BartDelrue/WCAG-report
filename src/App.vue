@@ -15,7 +15,7 @@
         <main>
             <section class="section page-break-before">
                 <Summary class="container page-break-avoid" :website="evaluationScope.website"
-                         :summary="evaluation.summary"
+                         :summary="evaluation.summary || ''"
                          :scope="evaluationScope"
                          :reliedUponTechnology="evaluation.reliedUponTechnology"/>
             </section>
@@ -51,12 +51,14 @@
 </template>
 
 <script>
-  import report from '@/assets/visit-gent-evaluation-report.json';
+  import report from '@/assets/evaluation-report.json';
   import wcagEn from '@/assets/wcag2-en.json';
   import Summary from './components/Summary';
   import Breakdown from './components/Breakdown';
   import Pages from './components/Pages';
   import Detail from './components/Detail';
+
+  const dateFormat = new Intl.DateTimeFormat([], { dateStyle: 'full' });
 
   export default {
     name: 'App',
@@ -72,7 +74,8 @@
       },
       evaluationDate () {
         const date = new Date(this.evaluation.date);
-        return `${date.getUTCDate()}/${date.getUTCMonth() + 1}/${date.getUTCFullYear()}`;
+        return dateFormat.format(date);
+        // return `${date.getUTCDate()}/${date.getUTCMonth().toLocaleString()}/${date.getUTCFullYear()}`;
       },
       evaluationScope () {
         return this.evaluation.evaluationScope;
